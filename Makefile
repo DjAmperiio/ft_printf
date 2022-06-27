@@ -1,4 +1,5 @@
-SRCS	= ft_printf.c ft_printf_char.c
+SRCS	= ft_printf.c ft_printf_char.c ft_prinft_string.c \
+		ft_printf_pointer.c 
 
 OBJS	= $(SRCS:.c=.o)
 CC		= gcc

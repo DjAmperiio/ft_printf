@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 13:40:00 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/07/15 11:51:23 by jnevado-         ###   ########.fr       */
+/*   Created: 2022/07/14 11:20:17 by jnevado-          #+#    #+#             */
+/*   Updated: 2022/07/15 12:55:58 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
+#include "ft_printf.h"
 
-# define FT_PRINTF_H
-
-# include "unistd.h"
-# include "stdarg.h"
-
-void	ft_printf_char(char c, int *cont);
-void	ft_printf_string(char *str, int *cont);
-void	ft_printf_decimal(int num, int *cont);
-void	ft_printf_integer(int num, int *cont);
-void	ft_printf_unsigned(unsigned int num, int *cont);
-int		ft_printf(char const *str, ...);
-
-#endif
+void	ft_printf_unsigned(unsigned int num, int *cont)
+{
+	if (num >= 10)
+	{
+		ft_printf_integer(num / 10, cont);
+		num = num % 10;
+	}
+	ft_printf_char(num + '0', cont);
+}

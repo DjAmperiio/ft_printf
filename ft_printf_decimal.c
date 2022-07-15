@@ -1,52 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prinft_digital.c                                :+:      :+:    :+:   */
+/*   ft_printf_decimal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:59:55 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/06/27 14:06:02 by jnevado-         ###   ########.fr       */
+/*   Updated: 2022/07/15 11:54:45 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h";
+#include "ft_printf.h"
 
-int	putstr(char *str)
+void	ft_printf_decimal(int num, int *cont)
 {
-	int	size;
+	long long	long_num;
 
-	size = 0;
-	while (str)
+	long_num = (long long)num;
+	if (long_num < 0)
 	{
-		write(1, &str[size], 1);
-		size++;
+		ft_printf_char('-', cont);
+		long_num *= -1;
 	}
-	return (size);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	long	num;
-
-	num = n;
-	if (num < 0)
+	if (long_num >= 10)
 	{
-		ft_putchar_fd('-', fd);
-		num = -num;
+		ft_printf_integer(long_num / 10, cont);
+		long_num = long_num % 10;
 	}
-	if (num < 10)
-		ft_putchar_fd((char)(num + '0'), fd);
-	else
-	{
-		ft_putnbr_fd((int)(num / 10), fd);
-		ft_putchar_fd((char)(num % 10 + '0'), fd);
-	}
-}
-
-int	ft_prinft_digital(char *str)
-{
-	if (str == NULL)
-		return (putstr("(null)"));
-	return (putstr(str));
+	ft_printf_char(long_num + '0', cont);
 }

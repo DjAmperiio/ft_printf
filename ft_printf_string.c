@@ -6,31 +6,37 @@
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:21:19 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/06/27 13:40:30 by jnevado-         ###   ########.fr       */
+/*   Updated: 2022/07/15 11:49:14 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h";
+#include "ft_printf.h"
 
-int	putstr(char *str)
+void	ft_putstr(char *str, int *cont)
 {
-	int	size;
+	int	i;
 
-	size = 0;
-	while (str)
+	i = 0;
+	while (str[i])
 	{
-		write(1, &str[size], 1);
-		size++;
+		ft_printf_char(str[i], cont);
+		i++;
 	}
-	return (size);
 }
 
-int	ft_printf_string(char *str)
+void	ft_printf_string(char *str, int *cont)
 {
+	int	i;
+
+	i = 0;
 	if (str == NULL)
 	{
-		putstr("(null)");
-		return (6);
+		ft_putstr("(null)", cont);
+		return ;
 	}
-	return (putstr(str));
+	while (str[i])
+	{
+		ft_printf_char(str[i], cont);
+		i++;
+	}
 }

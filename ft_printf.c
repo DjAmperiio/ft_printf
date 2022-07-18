@@ -6,7 +6,7 @@
 /*   By: jnevado- <jnevado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 13:13:09 by jnevado-          #+#    #+#             */
-/*   Updated: 2022/07/15 11:40:52 by jnevado-         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:45:19 by jnevado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ void	ft_all(char choose, int *cont, va_list args)
 		ft_printf_integer(va_arg(args, int), cont);
 	else if (choose == 'u')
 		ft_printf_unsigned(va_arg(args, unsigned int), cont);
+	else if (choose == 'x')
+		ft_printf_hexlower(va_arg(args, unsigned int), cont);
+	else if (choose == 'X')
+		ft_printf_hexupper(va_arg(args, unsigned int), cont);
+	else if (choose == 'p')
+	{
+		ft_printf_string("0x", cont);
+		ft_printf_hexlower(va_arg(args, unsigned long long int), cont);
+	}
 }
 
 int	ft_printf(char const *str, ...)
